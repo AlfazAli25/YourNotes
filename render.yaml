@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: yournotes
+    env: node
+    buildCommand: cd server && npm install && cd ../client-vite && npm install && npm run build
+    startCommand: cd server && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production

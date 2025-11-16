@@ -3,12 +3,8 @@
   "version": "1.0.0",
   "description": "A beautiful modern notepad with 3D heart bubbles and gendered themes",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd server && npm run dev",
-    "client": "cd client-vite && npm run dev",
-    "build": "cd client-vite && npm install && npm run build",
-    "start": "cd server && npm start",
-    "install-deps": "cd server && npm install && cd ../client-vite && npm install"
+    "build": "npm install && cd server && npm install && cd ../client-vite && npm install && npm run build",
+    "start": "cd server && node server.js"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
