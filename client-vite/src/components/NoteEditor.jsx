@@ -12,10 +12,13 @@ export default function NoteEditor({ user, onLogout, onAuthRequired }) {
   const { isDark, toggleTheme } = useTheme()
 
   useEffect(() => {
-    fetchNotes()
-  }, [])
+    if (user) {
+      fetchNotes()
+    }
+  }, [user])
 
   const fetchNotes = async () => {
+    if (!user) return
     try {
       const response = await axios.get(`${API_BASE_URL}/notes/${user.userId}`)
       setNotes(response.data)
