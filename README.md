@@ -20,8 +20,8 @@ A beautiful, modern notepad application with 3D heart-shaped bubbles, gendered t
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/modern-notepad.git
-   cd modern-notepad
+   git clone https://github.com/AlfazAli25/YourNotes.git
+   cd YourNotes
    ```
 
 2. **Install dependencies**
