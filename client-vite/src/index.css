@@ -1,0 +1,133 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #374151 100%);
+}
+
+body.light {
+  background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 30%, #fbcfe8 70%, #f9a8d4 100%);
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+
+body.dark::before {
+  background: radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(75, 85, 99, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(107, 114, 128, 0.1) 0%, transparent 50%);
+}
+
+body.light::before {
+  background: radial-gradient(circle at 20% 80%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(219, 39, 119, 0.15) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(168, 85, 247, 0.1) 0%, transparent 50%);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.floating-bubble {
+  position: absolute;
+  backdrop-filter: blur(5px);
+  animation: float-up 15s infinite linear;
+  transform-origin: center;
+}
+
+.floating-bubble::before {
+  content: '';
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  background: inherit;
+  border-radius: 50px 50px 0 0;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.floating-bubble::after {
+  content: '';
+  width: 100%;
+  height: 90%;
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  background: inherit;
+  border-radius: 50px 50px 0 0;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.dark .floating-bubble {
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.4), rgba(99, 102, 241, 0.6));
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.light .floating-bubble {
+  background: linear-gradient(45deg, rgba(236, 72, 153, 0.7), rgba(219, 39, 119, 0.8));
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.5);
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
