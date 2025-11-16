@@ -10,14 +10,17 @@ const PORT = process.env.PORT || 5000
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://yournotes.onrender.com'] 
-    : ['http://localhost:5173', 'http://localhost:3000']
+    ? true 
+    : ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
 }))
 app.use(express.json())
 
 // Serve static files in production
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../client-vite/dist')))
+  const clientPath = path.join(__dirname, '../client-vite/dist')
+  console.log('Serving static files from:', clientPath)
+  app.use(express.static(clientPath))
 }
 
 // MongoDB connection
@@ -32,7 +35,9 @@ db.once('open', () => {
   console.log('Connected to MongoDB')
 })
 
-// Routes
+
+
+// API routes first
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
