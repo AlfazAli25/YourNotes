@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Save, FileText, Trash2, Plus, Moon, Sun, LogOut } from 'lucide-react'
+import { Save, FileText, Trash2, Plus, Moon, Sun, LogOut, Edit2 } from 'lucide-react'
 import axios from 'axios'
 import { useTheme } from '../context/ThemeContext'
 import API_BASE_URL from '../config/api'
@@ -111,18 +111,32 @@ export default function NoteEditor({ user, onLogout, onAuthRequired }) {
                     isDark ? 'text-white/70' : 'text-gray-600'
                   }`}>{note.content.substring(0, 50)}...</p>
                 </div>
-                <motion.button
-                  whileHover={{ scale: 1.1 }}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    deleteNote(note._id)
-                  }}
-                  className={`ml-2 transition-colors ${
-                    isDark ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-600'
-                  }`}
-                >
-                  <Trash2 size={16} />
-                </motion.button>
+                <div className="flex gap-1 ml-2">
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setCurrentNote({ id: note._id, title: note.title, content: note.content })
+                    }}
+                    className={`transition-colors ${
+                      isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-500 hover:text-blue-600'
+                    }`}
+                  >
+                    <Edit2 size={14} />
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.1 }}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      deleteNote(note._id)
+                    }}
+                    className={`transition-colors ${
+                      isDark ? 'text-red-400 hover:text-red-300' : 'text-red-500 hover:text-red-600'
+                    }`}
+                  >
+                    <Trash2 size={14} />
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           ))}
