@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-app-name.onrender.com'] 
+    ? ['https://yournotes.onrender.com'] 
     : ['http://localhost:5173', 'http://localhost:3000']
 }))
 app.use(express.json())
